@@ -1,0 +1,51 @@
+
+<section>
+    <header>
+        <h1>Order #<?php echo $this->order->getOrdernr(); ?></h1>
+
+        <div class="right">
+            <a href="/klanten/view/id/<?php echo $this->order->getKlant()->getKlantnr(); ?>" class="tip view-client" title="Klant bekijken">Klant bekijken</a>
+            <a href="/orders/edit/id/<?php echo $this->order->getOrdernr(); ?>" class="tip edit" title="Order aanpassen">Order aanpassen</a>
+            <a href="/orders/delete/id/<?php echo $this->order->getOrdernr(); ?>" class="tip delete" title="Order verwijderen">Order verwijderen</a>
+        </div>
+    </header>
+
+    <?php if(!empty($this->success)) :?><div class="success"><?php echo $this->success; ?></div><?php endif; ?>
+    <div id="view">
+        <div><label for="klant">Klant:</label> <?php echo $this->order->getKlant()->getVoornaam() . ' ' . $this->order->getKlant()->getAchternaam(); ?> - <?php echo $this->order->getKlant()->getKlantnr(); ?></div>
+        <div><label for="datum">Aangemaakt op:</label> <?php echo $this->order->getDatum()->format("Y-m-d"); ?></div>
+        <div><label for="deadline">Einddatum:</label> <?php echo $this->order->getDeadline()->format("Y-m-d"); ?></div>
+        <div><label for="status">Status:</label> <?php echo $this->order->getStatus(); ?></div>
+
+        <div style="margin-top: 50px;"><label for="producten">Producten:</label></div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Omschrijving</th>
+                    <th>Aantal</th>
+                    <th>Status</th>
+                    <th>Acties</th>
+                </tr>
+            </thead>
+        <?php if(!$this->order->getProducten()->isEmpty()) : ?>
+            <?php $i=0; foreach($this->order->getProducten() as $p) :  $i++;?>
+            <tr<?php if($i%2==0) : echo ' class="even"'; endif; ?>>
+                <td><?php echo $p->getOmschrijving(); ?></td>
+                <td><?php echo $p->getAantal(); ?></td>
+                <td><?php echo $p->getStatus(); ?></td>
+                <td><a href="/product/view/id/<?php echo $p->getProductnr(); ?>" class="tip view-product" title="Bekijk product">Bekijk product</a></td>
+            </tr>
+            <?php endforeach; ?>
+        <?php else : ?>
+            <tr>
+                <td colspan="4">Geen producten gevonden voor deze order</td>
+            </tr>
+        <?php endif;?>
+            <tfoot>
+                <td colspan="4"><a href=""><a href="/product/new/id/<?php echo $this->order->getOrdernr(); ?>" class="button">Product toevoegen</a></a></td>
+            </tfoot>
+        </table>
+
+        <div><a href="/orders/edit/id/<?php echo $this->order->getOrdernr(); ?>" class="button">Order aanpassen</a></div>
+    </div>
+</section>

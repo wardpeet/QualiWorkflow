@@ -1,0 +1,36 @@
+
+<section>
+    <header>
+        <h1>Bekijk klanten</h1>
+    </header>
+
+    <?php if(!empty($this->error)) :?><div class="error"><?php echo $this->error; ?></div><?php endif; ?>
+    <?php if(!empty($this->success)) :?><div class="success"><?php echo $this->success; ?></div><?php endif; ?>
+    <table>
+        <thead>
+            <tr>
+                <th>Klantnr</th>
+                <th>Naam</th>
+                <th>Telefoon</th>
+                <th>Email</th>
+                <th>Acties</th>
+            </tr>
+        </thead>
+
+    <?php if($this->klanten) : ?>
+        <?php $i=0; foreach($this->klanten as $klant) : $i++; ?>
+        <tr>
+            <td><?php echo $klant->getKlantnr(); ?></td>
+            <td><?php echo $klant->getVoornaam() . " " . $klant->getAchternaam(); ?></td>
+            <td><?php echo $this->format()->telephone($klant->getTelefoon()); ?></td>
+            <td><?php echo $klant->getEmail(); ?></td>
+            <td><a href="/klanten/view/id/<?=$klant->getKlantnr();?>" class="tip view-client" title="Bekijk klant">Bekijk klant</a> <a href="/orders/klant/id/<?=$klant->getKlantnr();?>" class="tip view-order" title="Orders van klant">Orders van klant</a> <a href="/klanten/delete/id/<?=$klant->getKlantnr();?>" title="Verwijder klant" class="tip delete">Verwijder klant</a></td>
+        </tr>
+        <?php endforeach; ?>
+    <?php else: ?>
+        <tr>
+            <td colspan="5">Er konden nog geen klanten worden gevonden.</td>
+        </tr>
+    <?php endif; ?>
+    </table>
+</section>

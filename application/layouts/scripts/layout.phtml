@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head>
+    <title><?=$this->escape($this->title);?></title>
+
+    <?php echo $this->headLink()->appendStylesheet('/css/styles.css'); ?>
+    <script src="/js/modernizr.js"></script>
+</head>
+
+<body>
+<div class="container">
+    <aside>
+        <header><a href="/">QualiWorkflow</a></header>
+
+        <nav id="navigation">
+            <?php echo $this->navigation()->menu(); ?>
+        </nav>
+    </aside>
+
+    <?php echo $this->layout()->content; ?>
+
+</div>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
+<script src="/js/jquery.tipsy.js"></script>
+<script src="/js/jquery.functions.js"></script>
+</body>
+</html>

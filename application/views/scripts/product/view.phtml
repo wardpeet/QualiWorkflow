@@ -1,0 +1,26 @@
+
+<section>
+    <header>
+        <h1>Product #<?php echo $this->product->getProductnr(); ?> van order #<?php echo $this->product->getOrder()->getOrdernr(); ?></h1>
+        <div class="right">
+            <a href="/orders/view/id/<?php echo $this->product->getOrder()->getOrdernr(); ?>" class="tip view-order" title="Order bekijken">Order bekijken</a>
+            <a href="/product/edit/id/<?php echo $this->product->getProductnr(); ?>" class="tip edit" title="Product aanpassen">Product aanpassen</a>
+            <a href="/product/delete/id/<?php echo $this->product->getProductnr(); ?>" class="tip delete" title="Product verwijderen">Product verwijderen</a>
+        </div>
+    </header>
+
+    <?php if(!empty($this->success)) :?><div class="success"><?php echo $this->success; ?></div><?php endif; ?>
+    <div id="view">
+        <div><label for="ordernr">Ordernr:</label> <?php echo $this->product->getOrder()->getOrdernr(); ?></div>
+        <div><label for="instock">In stock:</label> <?php echo ($this->product->getInstock() ? 'Ja' : 'Nee'); ?></div>
+        <div><label for="aantal">Aantal:</label> <?php echo $this->product->getAantal(); ?></div>
+        <div><label for="omschrijving">Omschrijving:</label> <?php echo $this->product->getOmschrijving(); ?></div>
+        <div><label for="papier">Papier:</label> <?php echo $this->product->getPapier(); ?></div>
+        <div><label for="formaat">Formaat:</label> <?php echo $this->product->getFormaat(); ?></div>
+        <div><label for="kleurdruk">Kleurdruk:</label> <?php echo $this->product->getKleurdruk(); ?></div>
+        <div><label for="afwerking">Afwerking:</label> <?php echo $this->product->getAfwerking(); ?></div>
+        <div><label for="status">Status:</label> <?php echo $this->product->getStatus(); ?></div>
+
+        <div><a href="/product/edit/id/<?php echo $this->product->getProductnr(); ?>" class="button">Product aanpassen</a></div>
+    </div>
+</section>

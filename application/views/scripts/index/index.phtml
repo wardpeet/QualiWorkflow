@@ -1,0 +1,44 @@
+
+<section>
+    <header>
+        <h1>Beheer orders</h1>
+    </header>
+
+    <?php if(!empty($this->error)) :?><div class="error"><?php echo $this->error; ?></div><?php endif; ?>
+    <?php if(!empty($this->success)) :?><div class="success"><?php echo $this->success; ?></div><?php endif; ?>
+    <table>
+        <thead>
+            <tr>
+                <th>Ordernr</th>
+                <th>Klantnaam</th>
+                <th>Startdatum</th>
+                <th>Deadline</th>
+                <th>Aantal producten</th>
+                <th>Acties</th>
+            </tr>
+        </thead>
+
+        <tbody>
+<?php if($this->orders): ?>
+    <?php $i=0; foreach($this->orders as $o) : $i++;?>
+            <tr<?php if($i%2==0) : echo ' class="even"'; endif;?>>
+                <td><?=$o->getOrdernr();?></td>
+                <td><? echo $o->getKlant()->getAchternaam() . " " . $o->getKlant()->getVoornaam();?></td>
+                <td><? echo $o->getDatum()->format("Y-m-d");?></td>
+                <td><? echo $o->getDeadline()->format("Y-m-d");?></td>
+                <td><? echo @$o->getProducten()->count(); ?></td>
+                <td><a href="/orders/view/id/<?=$o->getOrdernr();?>" class="tip view-order" title="Bekijk order">Bekijk order</a> <a href="/klanten/view/id/<?=$o->getKlant()->getKlantnr();?>" class="tip view-client" title="Bekijk klant">Bekijk klant</a> <a href="/orders/delete/id/<?=$o->getOrdernr();?>" title="Verwijder order" class="tip delete">Verwijder order</a></td>
+            </tr>
+    <?php endforeach; ?>
+<?php else: ?>
+            <tr>
+                <td colspan="6">Geen orders gevonden</td>
+            </tr>
+<?php endif; ?>
+        </tbody>
+
+        <tfoot>
+            <td colspan="6"><a href="/orders/new" class="button">Nieuwe order</a></td>
+        </tfoot>
+    </table>
+</section>

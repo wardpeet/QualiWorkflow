@@ -1,0 +1,47 @@
+
+<section>
+    <header>
+        <h1>Orders van <?php echo $this->klant->getVoornaam() . ' ' . $this->klant->getAchternaam(); ?></h1>
+
+        <div class="right">
+            <a href="/klanten/view/id/<?php echo $this->klant->getKlantnr(); ?>" class="tip view-client" title="Klant bekijken">Klant bekijken</a>
+            <a href="/klanten/delete/id/<?php echo $this->klant->getKlantnr(); ?>" class="tip delete" title="Klant verwijderen">Klant verwijderen</a>
+        </div>
+    </header>
+
+    <?php if(!empty($this->error)) :?><div class="error"><?php echo $this->error; ?></div><?php endif; ?>
+    <?php if(!empty($this->success)) :?><div class="success"><?php echo $this->success; ?></div><?php endif; ?>
+    <table>
+        <thead>
+            <tr>
+                <th>Ordernr</th>
+                <th>Startdatum</th>
+                <th>Deadline</th>
+                <th>Aantal producten</th>
+                <th>Acties</th>
+            </tr>
+        </thead>
+
+        <tbody>
+<?php if(!$this->klant->getOrders()->isEmpty()): ?>
+    <?php $i=0; foreach($this->klant->getOrders() as $o) : $i++;?>
+            <tr<?php if($i%2==0) : echo ' class="even"'; endif;?>>
+                <td><?=$o->getOrdernr();?></td>
+                <td><? echo $o->getDatum()->format("Y-m-d");?></td>
+                <td><? echo $o->getDeadline()->format("Y-m-d");?></td>
+                <td><? echo @$o->getProducten()->count(); ?></td>
+                <td><a href="/orders/view/id/<?=$o->getOrdernr();?>" class="tip view-order" title="Bekijk order">Bekijk order</a> <a href="/orders/delete/id/<?=$o->getOrdernr();?>" title="Verwijder order" class="tip delete">Verwijder order</a></td>
+            </tr>
+    <?php endforeach; ?>
+<?php else: ?>
+            <tr>
+                <td colspan="5">Geen orders gevonden</td>
+            </tr>
+<?php endif; ?>
+        </tbody>
+
+        <tfoot>
+            <td colspan="5"><a href="/orders/new/id/<?php echo $this->klant->getKlantnr(); ?>" class="button">Order toevoegen</a></td>
+        </tfoot>
+    </table>
+</section>

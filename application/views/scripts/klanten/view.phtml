@@ -1,0 +1,30 @@
+
+<section>
+    <header>
+        <h1>Bekijk klant #<?php echo $this->klant->getKlantnr(); ?></h1>
+
+        <div class="right">
+            <a href="/orders/klant/id/<?php echo $this->klant->getKlantnr(); ?>" class="tip view-order" title="Orders van klant">Orders van klant</a>
+            <a href="/klanten/edit/id/<?php echo $this->klant->getKlantnr(); ?>" class="tip edit" title="Klant aanpassen">Klant aanpassen</a>
+            <a href="/klanten/delete/id/<?php echo $this->klant->getKlantnr(); ?>" class="tip delete" title="Klant verwijderen">Klant verwijderen</a>
+        </div>
+    </header>
+
+    <?php if(!empty($this->success)) :?><div class="success"><?php echo $this->success; ?></div><?php endif; ?>
+    <div id="view">
+        <div><label for="klantnr">Klantnr:</label> <?php echo $this->klant->getKlantnr(); ?></div>
+        <div><label for="voornaam">Voornaam:</label> <?php echo $this->klant->getVoornaam(); ?></div>
+        <div><label for="achternaam">Achternaam:</label> <?php echo $this->klant->getAchternaam(); ?></div>
+
+        <div><label for="straat">Straat:</label> <?php echo $this->klant->getStraat(); ?></div>
+        <div><label for="nummer">Nummer:</label> <?php echo $this->klant->getNummer(); ?></div>
+        <div><label for="postcode">Postcode:</label> <?php echo $this->klant->getGemeente()->getPostcode(); ?></div>
+        <div><label for="gemeente">Gemeente:</label> <?php echo $this->klant->getGemeente()->getGemeente(); ?></div>
+
+        <div><label for="telefoon">Telefoon:</label> <?php echo $this->format()->telephone($this->klant->getTelefoon()); ?></div>
+        <div><label for="email">Email:</label> <?php echo $this->klant->getEmail(); ?> <a href="mailto:<?php echo $this->klant->getEmail(); ?>" class="tip-w email" title="Email klant"></a></div>
+
+        <div>&nbsp;</div>
+        <div><a href="/klanten/edit/id/<?php echo $this->klant->getKlantnr(); ?>" class="button">Klant aanpassen</a></div>
+    </div>
+</section>

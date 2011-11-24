@@ -1,0 +1,15 @@
+
+<section>
+    <header>
+        <h1>Product aanpassen #<?php echo $this->product->getProductnr(); ?> van order #<?php echo $this->product->getOrder()->getOrdernr(); ?></h1>
+
+        <?php if(!empty($this->error)) :?><div class="error"><?php echo $this->error; ?></div><?php endif; ?>
+        <div class="right">
+            <a href="/orders/view/id/<?php echo $this->product->getProductnr(); ?>" class="tip view-product" title="Product bekijken">Product bekijken</a>
+            <a href="/orders/delete/id/<?php echo $this->product->getProductnr(); ?>" class="tip delete" title="Product verwijderen">Product verwijderen</a>
+        </div>
+    </header>
+
+    <?php if(!empty($this->error)) :?><div class="error"><?php echo $this->error; ?></div><?php endif; ?>
+    <?php echo $this->form; ?>
+</section>

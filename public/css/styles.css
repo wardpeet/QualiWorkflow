@@ -1,0 +1,481 @@
+/**************************************
+
+Naam: Backendpanel
+Auteur: Ward Peeters (http://www.coding-tech.com)
+
+**************************************/
+
+/* Reset CSS
+---------------------------------------------------------*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video, input, textarea { 
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+body {
+    line-height: 1;
+}
+ol, ul {
+    list-style: none;
+}
+blockquote, q {
+    quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+a {
+    color: inherit;
+}
+
+/* General CSS
+---------------------------------------------------------*/
+html, body {
+    height: 100%;
+}
+body {
+    background: #f1f1f1;
+
+    font-family: Verdana,Geneva,Kalimati,sans-serif;
+    font-size: 10px;
+}
+.container {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+
+    position: relative;
+}
+.copyright {
+    width: 100%;
+
+    position: absolute;
+    bottom: 10px;
+
+    text-align: center;
+}
+
+.error, .success {
+    background: #c2ee9b;
+    margin: 10px; padding: 10px 15px;
+    border: 1px solid #ddd;
+
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+
+    color: #345f0e;
+    font-size: 1.2em;
+}
+.error {
+    background: #fabbbb;
+
+    color: #882626;
+}
+
+/* Sidebar CSS
+---------------------------------------------------------*/
+aside {
+    background: url(../images/backend-background-y.png) repeat-y;
+    width: 252px; height: 100%;
+    padding: 25px 0 60px;
+
+    position: absolute;
+    top: -50px;
+}
+aside header {
+    background: url(../images/backend-background-x.png) repeat-x 0 61px;
+    margin: 0 3px 0 0; padding: 0 0 8px;
+}
+aside header a {
+    background: url(../images/backend.png) no-repeat;
+    width: 249px; height: 60px;
+    border-bottom: 1px solid #acacac;
+    display: block;
+    overflow: hidden;
+
+    text-indent: -9999px;
+}
+aside nav {
+    margin: 25px 3px 25px 0;
+
+    color: #666;
+}
+aside li a {
+    background: url(../images/backend.png) no-repeat -248px 0;
+    width: 239px; height: 35px;
+    padding: 0 0 0 10px;
+    display: block;
+
+    font-size: 1.2em;
+    text-decoration: none;
+    line-height: 35px;
+}
+aside li a:hover {
+    background-position: -248px -35px;
+}
+aside li.active a {
+    background-position: -248px -70px;
+
+    color: #fff;
+}
+aside .active li a {
+    color: #414042;
+}
+aside li ul {
+    display: none;
+}
+aside li li {
+    border-bottom: 1px solid #ddd;
+}
+aside li li a {
+    background: none;
+    width: auto;
+
+    font-size: 1.1em;
+}
+aside li li a:hover {
+    margin-left: 10px;
+}
+aside nav > ul > li a:before {
+    background: url(../images/backend.png) no-repeat;
+    width: 16px; height: 16px;
+    margin: 10px 10px 0 0;
+    display: block;
+    float: left;
+
+    content: "";
+}
+aside .orders:before {
+    background-position: 0 -60px;
+}
+aside .klanten:before {
+    background-position: -16px -60px;
+}
+
+/* TOP ICONS CSS
+---------------------------------------------------------*/
+#top-icons {
+    background: url(../images/backend-background-x.png) repeat-x 0 -13px;
+    height: 34px;
+    border: 1px solid #c5c5c5; border-top: none;
+
+    border-radius: 0 0 5px 5px;
+    -moz-border-radius: 0 0 5px 5px;
+    -webkit-border-radius: 0 0 5px 5px;
+
+    box-shadow: 0px 0px 3px 0px #c5c5c5;
+    -webkit-box-shadow: 0px 0px 3px 0px #c5c5c5;
+    -moz-box-shadow: 0px 0px 3px 0px #c5c5c5;
+
+    position: absolute;
+    top: 0; right: 100px;
+}
+#top-icons ul {
+    margin: 9px 10px;
+}
+#top-icons li {
+    margin: 0 10px;
+    float: left;
+
+    position: relative;
+}
+#top-icons a {
+    background: url(../images/backend.png) no-repeat;
+    width: 16px; height: 16px;
+    display: block;
+    overflow: hidden;
+
+    text-indent: -9999px;
+}
+
+#top-icons .website a {
+    background-position: 0 -76px;
+}
+#top-icons .messages a {
+    background-position: -16px -76px;
+}
+#top-icons .logout a {
+    background-position: -32px -76px;
+}
+#top-icons span {
+    background: #f00;
+    padding: 2px 4px 3px;
+    display: block;
+    opacity: 0.8;
+
+    border-radius: 40px;
+    -moz-border-radius: 40px;
+    -webkit-border-radius: 40px;
+
+    position: absolute;
+    top: -5px; right: -5px;
+
+    color: #fff;
+}
+
+/* Sections CSS
+---------------------------------------------------------*/
+section {
+    background: #fff;
+    margin: 50px 25px 25px 275px;
+    border: 1px solid #ddd; border-top: none;
+
+    border-radius: 5px 5px 0 0;
+    -moz-border-radius: 5px 5px 0 0;
+    -webkit-border-radius: 5px 5px 0 0;
+}
+section header {
+    background: url(../images/backend-background-x.png) repeat-x 0 -47px;
+    height: 36px;
+    
+    position: relative;
+
+    border-radius: 5px 5px 0 0;
+    -moz-border-radius: 5px 5px 0 0;
+    -webkit-border-radius: 5px 5px 0 0;
+
+    color: #fff;
+    line-height: 36px;
+}
+section header h1 {
+    padding: 0 25px;
+    font-size: 1.2em;
+}
+section header .right {
+    position: absolute;
+    top: 1px; right: 5px;
+}
+section p, section input {
+    margin: 10px;
+
+    font-size: 1.2em;
+    line-height: 1.5em;
+}
+section div {
+    margin: 10px;
+}
+
+/* FORM CSS
+---------------------------------------------------------*/
+section input, section select, section textarea {
+    background: #f9f9f9;
+    width: 95%;
+    margin: 0; padding: 5px;
+    border: 1px solid #ddd;
+
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+
+    color: #aaa;
+    font-family: inherit;
+    font-size: 1.2em;
+}
+section textarea {
+    height: 200px;
+}
+section input:focus, section textarea:focus {
+    box-shadow: 0 0 2px #ddd inset;
+    -moz-box-shadow: 0 0 2px #ddd inset;
+    -webkit-box-shadow: 0 0 2px #ddd inset;
+
+    color: #333;
+}
+section label {
+    margin: 0 0 3px;
+    display: block;
+
+    font-size: 1.3em;
+    line-height: 1.5em;
+}
+.button, form .buttons input {
+    background: url(../images/backend-background-x.png) repeat-x 0 -83px;
+    width: auto; height: 22px;
+    padding: 0 5px 2px;
+    border: 1px solid #aaa;
+    vertical-align: middle;
+    cursor: pointer;
+
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+
+    text-shadow: 1px 1px 1px #999;
+
+    color: #fff;
+    text-decoration: none;
+}
+.button {
+    padding: 2px 5px 3px;
+    font-size: 0.85em;
+    line-height: 1.5em;
+}
+.button:focus {
+    box-shadow: none;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+
+    color: #fff;
+}
+form .checkbox {
+    width: auto; height: auto;
+    vertical-align: middle;
+}
+form .buttons input {
+    margin-right: 10px;
+
+    font-size: 1em;
+}
+
+/* Table CSS
+---------------------------------------------------------*/
+table {
+    width: 100%;
+}
+table th {
+    background: #fff;
+    padding: 0 0 0 20px;
+    border-top: 1px solid #ddd;
+    border-left: 1px solid #ddd;
+
+    font-size: 1.3em;
+    line-height: 30px;
+    text-align: left;
+}
+table td {
+    background: #f7f7f7;
+    padding: 6px 5px;
+    border-top: 1px solid #ddd; border-left: 1px solid #ddd;
+
+    font-size: 1.2em;
+}
+table .even td {
+    background: #f0f0f0;
+}
+table td:first-child, table th:first-child {
+    border-left: none;
+}
+table tfoot th {
+    border: none; border-top: 1px solid #ddd;
+}
+table div {
+    margin: 0;
+}
+table .actions select {
+    width: auto;
+    margin: 5px 10px 5px 0; padding: 3px;
+
+    color: #333;
+    font-size: 0.9em;
+}
+table .checkbox {
+    width: 30px;
+    padding: 0;
+}
+
+/* Actions CSS
+---------------------------------------------------------*/
+.view-order, .view-client, .view-product, .edit, .delete, .email {
+    background: url(../images/backend.png) no-repeat;
+    width: 16px; height: 16px;
+    margin: 0 1px;
+    display: block;
+    float: left;
+    overflow: hidden;
+
+    text-indent: -9999px;
+}
+.view-order {
+     background-position: 0 -76px;
+}
+.view-client {
+     background-position: -16px -76px;
+}
+.view-product {
+     background-position: -80px -76px;
+}
+.edit {
+     background-position: -32px -76px;
+}
+.delete {
+     background-position: -48px -76px;
+}
+.email {
+     background-position: -64px -76px;
+     display: inline-block;
+     float: none;
+     vertical-align: text-top;
+}
+
+/* VIEW CSS
+---------------------------------------------------------*/
+#view {
+    margin: 0;
+}
+#view div {
+    font-size: 1.2em;
+}
+#view label {
+    font-size: 1em;
+    font-weight: bold;
+}
+#view table {
+    margin: 0 0 25px;
+    border-top: 1px solid #ddd; border-botom: 1px solid #ddd;
+}
+
+/* Tipsy CSS
+---------------------------------------------------------*/
+.tipsy { font-size: 10px; position: absolute; padding: 5px; z-index: 100000; }
+  .tipsy-inner { background-color: #000; color: #FFF; max-width: 200px; padding: 5px 8px 4px 8px; text-align: center; }
+
+  /* Rounded corners */
+  .tipsy-inner { border-radius: 3px; -moz-border-radius: 3px; -webkit-border-radius: 3px; }
+  
+  .tipsy-arrow { position: absolute; width: 0; height: 0; line-height: 0; border: 5px dashed #000; }
+  
+  /* Rules to colour arrows */
+  .tipsy-arrow-n { border-bottom-color: #000; }
+  .tipsy-arrow-s { border-top-color: #000; }
+  .tipsy-arrow-e { border-left-color: #000; }
+  .tipsy-arrow-w { border-right-color: #000; }
+  
+  .tipsy-n { margin-top: 5px; }
+  
+.tipsy-n .tipsy-arrow { top: 0px; left: 50%; margin-left: -5px; border-bottom-style: solid; border-top: none; border-left-color: transparent; border-right-color: transparent; }
+    .tipsy-nw .tipsy-arrow { top: 0; left: 10px; border-bottom-style: solid; border-top: none; border-left-color: transparent; border-right-color: transparent;}
+    .tipsy-ne .tipsy-arrow { top: 0; right: 10px; border-bottom-style: solid; border-top: none; border-left-color: transparent; border-right-color: transparent;}
+  .tipsy-s .tipsy-arrow { bottom: 0; left: 50%; margin-left: -5px; border-top-style: solid; border-bottom: none; border-left-color: transparent; border-right-color: transparent; }
+    .tipsy-sw .tipsy-arrow { bottom: 0; left: 10px; border-top-style: solid; border-bottom: none; border-left-color: transparent; border-right-color: transparent; }
+    .tipsy-se .tipsy-arrow { bottom: 0; right: 10px; border-top-style: solid; border-bottom: none; border-left-color: transparent; border-right-color: transparent; }
+  .tipsy-e .tipsy-arrow { right: 0; top: 50%; margin-top: -5px; border-left-style: solid; border-right: none; border-top-color: transparent; border-bottom-color: transparent; }
+  .tipsy-w .tipsy-arrow { left: 0; top: 50%; margin-top: -5px; border-right-style: solid; border-left: none; border-top-color: transparent; border-bottom-color: transparent; }
+
+
